@@ -1,0 +1,19 @@
+{
+  "name": "bsale-store",
+  "version": "1.0.0",
+  "description": "e-commerce store",
+  "private": "true",
+  "workspaces": [
+    "backend"
+  ],
+  "engines": {
+    "npm": "7.20.3"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "npm start --workspace=backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
