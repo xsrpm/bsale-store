@@ -1,6 +1,7 @@
 const categorySelect = document.getElementById('category-select')
 const searchInput = document.getElementById('search-input')
 const productList = document.getElementById('product-list')
+const orderByPriceSelect = document.getElementById('order-by-price-select')
 
 fetch('./category')
   .then((response) => response.json())
@@ -16,6 +17,7 @@ fetch('./category')
   })
 
 function renderProductList(products) {
+  productList.innerHTML = ''
   let node = []
   products.forEach((product) => {
     const productItem = document.createElement('div')
@@ -66,9 +68,18 @@ function fetchProductByCategory() {
 fetchProductByCategory()
 
 function fetchProductBySearch() {
+  console.log(orderByPriceSelect.value)
+  console.log(categorySelect.value)
+  if (searchInput.value === '') return
   let query = `./product/search/${searchInput.value}?`
-  if (categorySelect.value !== 'Todas')
-    query += `categoryId=${categorySelect.value}`
+  query +=
+    categorySelect.value === 'Todas'
+      ? ''
+      : `categoryId=${categorySelect.value}&`
+  query +=
+    orderByPriceSelect.value === '---'
+      ? ''
+      : `orderByPrice=${orderByPriceSelect.value}`
   console.log(query)
   fetch(query)
     .then((response) => response.json())
@@ -76,11 +87,17 @@ function fetchProductBySearch() {
       renderProductList(products)
     })
 }
+fetchProductBySearch()
 
 categorySelect.addEventListener('change', () => {
-  productList.innerHTML = ''
   searchInput.value = ''
+  orderByPriceSelect.value = '---'
   fetchProductByCategory()
+})
+
+orderByPriceSelect.addEventListener('change', () => {
+  if (orderByPriceSelect.value === '---') return fetchProductByCategory()
+  fetchProductBySearch()
 })
 
 searchInput.addEventListener('keyup', () => {

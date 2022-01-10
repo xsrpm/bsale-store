@@ -542,10 +542,15 @@ function productsRoutes(mysqlConnection) {
     let searchQuery = `SELECT p.id,p.name,p.url_image,p.price,p.discount,c.id AS category_id, c.name AS category_name FROM product p JOIN category c ON p.category=c.id AND p.name LIKE '%${req.params.search}%'`
     if (
       req.query.categoryId &&
-      typeof parseInt(req.query.categoryId) === 'number'
+      typeof parseInt(req.query.categoryId) === 'number' &&
+      req.query.categoryId > 0
     ) {
       searchQuery += ` AND c.id=${req.query.categoryId}`
     }
+    if (req.query.orderByPrice && req.query.orderByPrice !== '') {
+      searchQuery += ` ORDER BY p.price ${req.query.orderByPrice}`
+    }
+    console.log(searchQuery)
     mysqlConnection.query(searchQuery, (err, rows, fields) => {
       if (!err) {
         res.json(rows)
