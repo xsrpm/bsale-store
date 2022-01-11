@@ -1,23 +1,28 @@
 require('dotenv').config()
 const express = require('express')
-const cors = require('cors')
-const app = express()
-
 const productRouter = require('./routes/product')
 const categoryRouter = require('./routes/category')
+const mysqlConnection = require('./db-connection.js')
+const cors = require('cors')
+
+const app = express()
 
 // Settings
 app.set('port', process.env.PORT || 3000)
 
 // Middlewares
-app.use(express.json())
 app.use(cors())
 app.use(express.static('../frontend/'))
-// Routes
-const mysqlConnection = require('./db-connection.js')
 
+// Routes
 app.use(productRouter(mysqlConnection))
 app.use(categoryRouter(mysqlConnection))
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500).json({
+    message: error.message
+  })
+})
 
 // Starting the server
 const server = app.listen(app.get('port'), () => {

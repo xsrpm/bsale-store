@@ -4,7 +4,16 @@ const productList = document.getElementById('product-list')
 const orderByPriceSelect = document.getElementById('order-by-price-select')
 
 fetch('./category')
-  .then((response) => response.json())
+  .then((response) => {
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error('No se encontró el recurso solicitado')
+      } else {
+        throw new Error('No se obtuvo una correcta respuesta del servidor')
+      }
+    }
+    return response.json()
+  })
   .then((categories) => {
     let node = []
     categories.forEach((category) => {
@@ -14,6 +23,9 @@ fetch('./category')
       node.push(option)
     })
     categorySelect.append(...node)
+  })
+  .catch((error) => {
+    console.error(error)
   })
 
 function renderProductList(products) {
@@ -60,9 +72,21 @@ function fetchProductByCategory() {
   else query = `./product/category/${categorySelect.value}`
   console.log(query)
   fetch(query)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error('No se encontró el recurso solicitado')
+        } else {
+          throw new Error('No se obtuvo una correcta respuesta del servidor')
+        }
+      }
+      return response.json()
+    })
     .then((products) => {
       renderProductList(products)
+    })
+    .catch((error) => {
+      console.log(error)
     })
 }
 fetchProductByCategory()
@@ -82,9 +106,26 @@ function fetchProductBySearch() {
       : `orderByPrice=${orderByPriceSelect.value}`
   console.log(query)
   fetch(query)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        if (response.status === 404) {
+          productList.innerHTML = 'No se encontró el recurso solicitado'
+          throw new Error('No se encontró el recurso solicitado')
+        } else {
+          productList.innerHTML =
+            'No se obtuvo una correcta respuesta del servidor'
+          throw new Error('No se obtuvo una correcta respuesta del servidor')
+        }
+      }
+      return response.json()
+    })
     .then((products) => {
-      renderProductList(products)
+      if (products && products.length === 0)
+        productList.innerHTML = 'No se encontraron resultados'
+      else renderProductList(products)
+    })
+    .catch((error) => {
+      console.log(error)
     })
 }
 fetchProductBySearch()
