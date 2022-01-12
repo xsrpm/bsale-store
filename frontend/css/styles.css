@@ -386,6 +386,7 @@ textarea {
 button,
 select {
   text-transform: none;
+  cursor:pointer
 }
 
 [role='button'] {
@@ -2479,6 +2480,7 @@ textarea.form-control-lg {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  cursor: pointer;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-select {
@@ -4358,6 +4360,9 @@ fieldset:disabled .btn {
   flex-basis: 100%;
   flex-grow: 1;
   align-items: center;
+  display: flex !important;
+  flex-basis: auto;
+  justify-content: end;
 }
 
 .navbar-toggler {
@@ -11657,6 +11662,12 @@ fieldset:disabled .btn {
 
 header {
   display: none;
+}
+
+section.category {
+  display: grid;
+  align-items: center;
+  gap: 10px;
 }
 
 section.panel {

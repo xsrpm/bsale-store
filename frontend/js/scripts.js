@@ -148,3 +148,10 @@ searchInput.addEventListener('keyup', () => {
   if (searchInput.value === '') fetchProductByCategory()
   else fetchProductBySearch()
 })
+
+productList.addEventListener('click', (event) => {
+  if (event.target.classList.contains('btn')) {
+    event.preventDefault()
+    console.log('click')
+  }
+})
