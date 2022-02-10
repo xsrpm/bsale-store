@@ -3,6 +3,11 @@ const { validate } = require('../helper/validate')
 const { categoryId, search } = require('../validations/product')
 const router = express.Router()
 
+/**
+ * Get all products from the database and return them as JSON
+ * @param mysqlConnection - The connection to the database.
+ * @returns A router object.
+ */
 function productsRoutes(mysqlConnection) {
   router.get('/product', (req, res) => {
     mysqlConnection.query('SELECT * FROM product', (err, rows, fields) => {

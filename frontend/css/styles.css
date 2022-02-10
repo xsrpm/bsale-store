@@ -4901,6 +4901,8 @@ fieldset:disabled .btn {
 .card-img-top {
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
+  width:206px;
+  height:206px
 }
 
 .card-img,

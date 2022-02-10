@@ -1,5 +1,9 @@
 const yup = require('yup')
 
+/**
+ * Given a request object, validate the `catId` parameter
+ * @param req - the request object
+ */
 function categoryId(req) {
   const schema = yup.object().shape({
     catId: yup.number().positive().required()
