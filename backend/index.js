@@ -4,6 +4,7 @@ const cors = require('cors')
 const productRouter = require('./routes/product')
 const categoryRouter = require('./routes/category')
 const mysqlConnection = require('./db-connection.js')
+const sqlInjection = require('sql-injection')
 
 const app = express()
 
@@ -13,6 +14,7 @@ app.set('port', process.env.PORT || 3000)
 // Middlewares
 app.use(cors())
 app.use(express.static('../frontend/'))
+app.use(sqlInjection)
 
 // Routes
 app.use(productRouter(mysqlConnection))

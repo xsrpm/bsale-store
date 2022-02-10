@@ -111,6 +111,9 @@ function fetchProductBySearch() {
         if (response.status === 404) {
           productList.innerHTML = 'No se encontró el recurso solicitado'
           throw new Error('No se encontró el recurso solicitado')
+        } else if (response.status === 403) {
+          productList.innerHTML = 'La solicitud fue denegada por el servidor'
+          throw new Error('La solicitud fue denegada por el servidor')
         } else {
           productList.innerHTML =
             'No se obtuvo una correcta respuesta del servidor'
