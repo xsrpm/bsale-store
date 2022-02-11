@@ -28,84 +28,78 @@
   </head>
   <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/">BSale Shop</a>
-        <div class="navbar-collapse" id="navbarSupportedContent">
-          <form class="d-flex">
-            <button class="btn btn-outline-dark" type="submit">
-              <i class="bi-cart-fill me-1"></i>
-              Cart
-              <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-            </button>
-          </form>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+          <a class="navbar-brand" href="/">BSale Shop</a>
+          <div class="navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex">
+              <button class="btn btn-outline-dark" type="submit">
+                <i class="bi-cart-fill me-1"></i>
+                Cart
+                <span class="badge bg-dark text-white ms-1 rounded-pill"
+                  >0</span
+                >
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-    </nav>
-    <!-- Header-->
-    <header class="bg-dark py-5">
-      <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-          <h1 class="display-4 fw-bolder">Shop in style</h1>
-          <p class="lead fw-normal text-white-50 mb-0">
-            With this shop homepage template
-          </p>
-        </div>
-      </div>
+      </nav>
     </header>
+    <main>
+      <!-- Section panel-->
+      <section class="category container mt-5">
+        <div class="group">
+          <label for="category-select" class="">Categoría</label>
+          <select
+            id="category-select"
+            class="form-select"
+            aria-label="Default select example"
+          >
+            <option selected>Todas</option>
+          </select>
+        </div>
+      </section>
 
-    <!-- Section panel-->
-    <section class="category container mt-5">
-      <div class="group">
-        <label for="category-select" class="">Categoría</label>
-        <select
-          id="category-select"
-          class="form-select"
-          aria-label="Default select example"
-        >
-          <option selected>Todas</option>
-        </select>
-      </div>
-    </section>
+      <!-- Section panel-->
+      <section class="panel container py-5">
+        <div class="input-group">
+          <input
+            id="search-input"
+            type="text"
+            class="form-control"
+            placeholder="Buscar"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+          <button id="search-button" class="btn btn-primary" id="basic-addon1">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+        <div class="group">
+          <label for="order-by-price-select" class="">Precio</label>
+          <select
+            id="order-by-price-select"
+            class="form-select"
+            aria-label="Default select example"
+          >
+            <option selected>---</option>
+            <option value="ASC">Ascendente</option>
+            <option value="DESC">Descedente</option>
+          </select>
+        </div>
+      </section>
 
-    <!-- Section panel-->
-    <section class="panel container py-5">
-      <div class="input-group">
-        <input
-          id="search-input"
-          type="text"
-          class="form-control"
-          placeholder="Buscar"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-        />
-        <button id="search-button" class="btn btn-primary" id="basic-addon1">
-          <i class="bi bi-search"></i>
-        </button>
-      </div>
-      <div class="group">
-        <label for="order-by-price-select" class="">Precio</label>
-        <select
-          id="order-by-price-select"
-          class="form-select"
-          aria-label="Default select example"
-        >
-          <option selected>---</option>
-          <option value="ASC">Ascendente</option>
-          <option value="DESC">Descedente</option>
-        </select>
-      </div>
-    </section>
-
-    <!-- Section list-->
-    <section class="my-5">
-      <div class="container px-4 px-lg-5 mt-5">
-        <div
-          id="product-list"
-          class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
-        ></div>
-      </div>
-    </section>
+      <!-- Section list-->
+      <section class="my-5">
+        <div class="container px-4 px-lg-5 mt-5">
+          <div
+            id="product-list"
+            class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+          ></div>
+        </div>
+      </section>
+    </main>
 
     <!-- Footer-->
     <footer class="py-5 bg-dark">
