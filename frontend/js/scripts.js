@@ -46,6 +46,7 @@ function renderProductList(products) {
                   : product.url_image
               }"
               alt="${product.name}"
+              loading="lazy"
               />
               <!-- Product details-->
               <div class="card-body p-4">

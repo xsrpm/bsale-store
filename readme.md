@@ -2,3 +2,5 @@
 - https://startbootstrap.com/template/shop-homepage
 - https://www.carlrippon.com/using-lodash-debounce-with-react-and-ts/
 - https://github.com/angus-c/just#just-debounce-it
+- https://midu.dev/lazy-loading-imagenes-html/
+- https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading
