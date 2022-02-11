@@ -1,5 +1,6 @@
 const categorySelect = document.getElementById('category-select')
 const searchInput = document.getElementById('search-input')
+const searchButton = document.getElementById('search-button')
 const productList = document.getElementById('product-list')
 const orderByPriceSelect = document.getElementById('order-by-price-select')
 
@@ -144,7 +145,7 @@ orderByPriceSelect.addEventListener('change', () => {
   fetchProductBySearch()
 })
 
-searchInput.addEventListener('keyup', () => {
+searchButton.addEventListener('click', () => {
   console.log(categorySelect.value)
   console.log(searchInput.value)
   productList.innerHTML = ''

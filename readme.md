@@ -1,2 +1,4 @@
 - https://www.npmjs.com/package/yup
 - https://startbootstrap.com/template/shop-homepage
+- https://www.carlrippon.com/using-lodash-debounce-with-react-and-ts/
+- https://github.com/angus-c/just#just-debounce-it
