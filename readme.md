@@ -4,3 +4,4 @@
 - https://github.com/angus-c/just#just-debounce-it
 - https://midu.dev/lazy-loading-imagenes-html/
 - https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading
+- https://docs.npmjs.com/cli/v7/using-npm/workspaces
