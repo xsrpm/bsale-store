@@ -38,7 +38,7 @@ function productsRoutes(mysqlConnection) {
   router.get('/product/search/:search', validate(search), (req, res) => {
     const { search } = req.params
     const { categoryId, orderByPrice } = req.query
-    let searchQuery = `SELECT p.id,p.name,p.url_image,p.price,p.discount,c.id AS category_id, c.name AS category_name FROM product p JOIN category c ON p.category=c.id AND p.name LIKE '%${search}%'`
+    let searchQuery = `SELECT p.id,p.name,p.url_image,p.price,p.discount,c.id AS category_id, c.name AS category_name FROM product p JOIN category c ON p.category=c.id WHERE p.name LIKE '%${search}%'`
     if (categoryId) {
       searchQuery += ` AND c.id=${categoryId}`
     }

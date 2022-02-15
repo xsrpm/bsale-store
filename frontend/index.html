@@ -63,7 +63,8 @@
 
       <!-- Section panel-->
       <section class="panel container py-5">
-        <div class="input-group">
+        <div class="group">
+          <label for="search-input" class="">Nombre</label>
           <input
             id="search-input"
             type="text"
@@ -72,9 +73,6 @@
             aria-label="Username"
             aria-describedby="basic-addon1"
           />
-          <button id="search-button" class="btn btn-primary" id="basic-addon1">
-            <i class="bi bi-search"></i>
-          </button>
         </div>
         <div class="group">
           <label for="order-by-price-select" class="">Precio</label>
@@ -87,6 +85,11 @@
             <option value="ASC">Ascendente</option>
             <option value="DESC">Descendente</option>
           </select>
+        </div>
+        <div class="group">
+          <button id="search-button" class="btn btn-primary" id="basic-addon1">
+            <i class="bi bi-search"></i> Buscar
+          </button>
         </div>
       </section>
 

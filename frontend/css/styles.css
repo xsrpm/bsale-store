@@ -11674,7 +11674,7 @@ section.category {
 
 section.panel {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr auto;
   align-items: center;
   gap: 10px;
 }
@@ -11683,4 +11683,10 @@ section.panel {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  section.panel {
+    grid-template-columns: 1fr 1fr;
+  }
 }
