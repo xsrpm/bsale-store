@@ -20,8 +20,6 @@ import {
   })
 
   searchButton.addEventListener('click', () => {
-    console.log(categorySelect.value)
-    console.log(searchInput.value)
     productList.innerHTML = ''
     paintProductBySearch(
       categorySelect.value,

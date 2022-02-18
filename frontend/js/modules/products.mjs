@@ -20,7 +20,6 @@ async function fetchProductByCategory(category) {
   let query
   if (category === 'Todas') query = './products'
   else query = `./products/categories/${category}`
-  console.log(query)
   const res = new ProductsResponse()
   try {
     const response = await fetch(query)
@@ -40,7 +39,6 @@ async function fetchProductByCategory(category) {
     res.error.status = response.status
     res.error.message = 'Se obtuvo una correcta respuesta del servidor'
     res.error.isError = false
-    console.log(res)
     return res
   } catch (error) {
     console.error(error)
@@ -55,8 +53,6 @@ async function fetchProductByCategory(category) {
  * @returns {ProductsResponse} - the response of fetch of products.
  */
 async function fetchProductBySearch(category, orderByPrice, searchText) {
-  console.log(orderByPrice)
-  console.log(category)
   const res = new ProductsResponse()
   if (searchText === '') {
     res.error.status = 200
@@ -67,7 +63,6 @@ async function fetchProductBySearch(category, orderByPrice, searchText) {
   let query = `./products/search/${searchText}?`
   query += category === 'Todas' ? '' : `categoryId=${category}&`
   query += orderByPrice === '---' ? '' : `orderByPrice=${orderByPrice}`
-  console.log(query)
 
   try {
     const response = await fetch(query)
@@ -161,7 +156,6 @@ function renderProductList(productsResponse, productList) {
 export async function paintProductByCategory(category, productList) {
   const response = await fetchProductByCategory(category)
   renderProductList(response, productList)
-  console.log('Products painted')
 }
 
 /**
@@ -182,7 +176,5 @@ export async function paintProductBySearch(
     orderByPrice,
     searchText
   )
-  console.log(response)
   renderProductList(response, productList)
-  console.log('Products painted')
 }

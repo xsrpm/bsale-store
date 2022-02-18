@@ -43,7 +43,5 @@ async function fetchCategories() {
  */
 export async function paintCategories(categorySelect) {
   const categories = await fetchCategories()
-  console.log(categories)
   renderCategories(categories, categorySelect)
-  console.log('Categories painted')
 }
