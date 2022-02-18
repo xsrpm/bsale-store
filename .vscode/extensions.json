@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "mintlify.document",
+    "steoates.autoimport",
+    "formulahendry.auto-rename-tag",
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "github.copilot",
+    "xabikos.javascriptsnippets",
+    "yzhang.markdown-all-in-one",
+    "christian-kohler.npm-intellisense",
+    "esbenp.prettier-vscode",
+    "vscode-icons-team.vscode-icons"
+  ]
+}
