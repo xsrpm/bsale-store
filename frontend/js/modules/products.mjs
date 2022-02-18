@@ -18,8 +18,8 @@ class ProductsResponse {
  */
 async function fetchProductByCategory(category) {
   let query
-  if (category === 'Todas') query = './product'
-  else query = `./product/category/${category}`
+  if (category === 'Todas') query = './products'
+  else query = `./products/categories/${category}`
   console.log(query)
   const res = new ProductsResponse()
   try {
@@ -64,7 +64,7 @@ async function fetchProductBySearch(category, orderByPrice, searchText) {
     res.error.isError = true
     return res
   }
-  let query = `./product/search/${searchText}?`
+  let query = `./products/search/${searchText}?`
   query += category === 'Todas' ? '' : `categoryId=${category}&`
   query += orderByPrice === '---' ? '' : `orderByPrice=${orderByPrice}`
   console.log(query)

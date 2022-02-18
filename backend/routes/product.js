@@ -4,12 +4,69 @@ const { categoryId, search } = require('../validations/product')
 const router = express.Router()
 
 /**
+ * @swagger
+ * components:
+ *  schemas:
+ *    Product:
+ *      type: object
+ *      properties:
+ *        id:
+ *          type: integer
+ *          description: The id of the product
+ *          required: true
+ *        name:
+ *          type: string
+ *          description: The name of the product
+ *          required: true
+ *        url_image:
+ *          type: string
+ *          description: The url of the product image
+ *          required: true
+ *        price:
+ *          type: number
+ *          description: The price of the product
+ *          required: true
+ *        discount:
+ *          type: number
+ *          description: The discount of the product
+ *          required: false
+ *        category:
+ *          type: number
+ *          description: The id of the category of the product
+ *          required: true
+ *      example:
+ *        id: 1
+ *        name: Product 1
+ *        url_image: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
+ *        price: 10
+ *        discount: 5
+ *        category: 1
+ */
+
+/**
  * Get all products from the database and return them as JSON
  * @param mysqlConnection - The connection to the database.
  * @returns A router object.
  */
 function productsRoutes(mysqlConnection) {
-  router.get('/product', (req, res) => {
+  /**
+   * @swagger
+   * /products:
+   *  get:
+   *   description: Returns all the products in the database
+   *   tags: [Product]
+   *   responses:
+   *    '200':
+   *     description: A list of products in the database
+   *     content:
+   *      application/json:
+   *       schema:
+   *        type: array
+   *        items:
+   *          $ref: '#/components/schemas/Product'
+   */
+
+  router.get('/products', (req, res) => {
     mysqlConnection.query('SELECT * FROM product', (err, rows, fields) => {
       if (!err) {
         res.json(rows)
@@ -19,23 +76,79 @@ function productsRoutes(mysqlConnection) {
     })
   })
 
-  router.get('/product/category/:catId', validate(categoryId), (req, res) => {
-    const { catId } = req.params
-    mysqlConnection.query(
-      `SELECT p.id,p.name,p.url_image,p.price,p.discount,c.id AS category_id, c.name AS category_name FROM product p JOIN category c ON p.category=c.id WHERE c.id=${parseInt(
-        catId
-      )}`,
-      (err, rows, fields) => {
-        if (!err) {
-          res.json(rows)
-        } else {
-          console.log(err)
-        }
-      }
-    )
-  })
+  /**
+   * @swagger
+   * /products/categories/{catId}:
+   *  get:
+   *   description: Returns all the products in the database
+   *   tags: [Product]
+   *   parameters:
+   *    - in: path
+   *      name: catId
+   *      schema:
+   *        type: integer
+   *      description: The id of the category
+   *      required: true
+   *   responses:
+   *    '200':
+   *     description: A list of products of the category x in the database
+   *     content:
+   *      application/json:
+   *       schema:
+   *        type: array
+   *        items:
+   *          $ref: '#/components/schemas/Product'
+   *   '404':
+   *      description: The category with the id x does not exist
+   */
 
-  router.get('/product/search/:search', validate(search), (req, res) => {
+  router.get(
+    '/products/categories/:catId',
+    validate(categoryId),
+    (req, res) => {
+      const { catId } = req.params
+      mysqlConnection.query(
+        `SELECT p.id,p.name,p.url_image,p.price,p.discount,c.id AS category_id, c.name AS category_name FROM product p JOIN category c ON p.category=c.id WHERE c.id=${parseInt(
+          catId
+        )}`,
+        (err, rows, fields) => {
+          if (!err) {
+            res.json(rows)
+          } else {
+            console.log(err)
+          }
+        }
+      )
+    }
+  )
+
+  /**
+   * @swagger
+   * /products/search/{search}:
+   *  get:
+   *   description: Returns all the products in the database for a search
+   *   tags: [Product]
+   *   parameters:
+   *    - in: path
+   *      name: search
+   *      schema:
+   *        type: string
+   *      description: The name or part of the name of the product
+   *      required: true
+   *   responses:
+   *    '200':
+   *     description: A list of products with the name/part of name sended in the database
+   *     content:
+   *      application/json:
+   *       schema:
+   *        type: array
+   *        items:
+   *          $ref: '#/components/schemas/Product'
+   *   '404':
+   *      description: Don't exist products with the name/part of name sended
+   */
+
+  router.get('/products/search/:search', validate(search), (req, res) => {
     const { search } = req.params
     const { categoryId, orderByPrice } = req.query
     let searchQuery = `SELECT p.id,p.name,p.url_image,p.price,p.discount,c.id AS category_id, c.name AS category_name FROM product p JOIN category c ON p.category=c.id WHERE p.name LIKE '%${search}%'`

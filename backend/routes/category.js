@@ -8,7 +8,44 @@ const router = express.Router()
  * @returns A router object.
  */
 function categoryRoutes(mysqlConnection) {
-  router.get('/category', (req, res) => {
+  /**
+   * @swagger
+   * components:
+   *  schemas:
+   *    Category:
+   *      type: object
+   *      properties:
+   *        id:
+   *          type: integer
+   *          description: The id of the category
+   *          required: true
+   *        name:
+   *          type: string
+   *          description: The name of the category
+   *          required: true
+   *      example:
+   *        id: 1
+   *        name: Category 1
+   */
+
+  /**
+   * @swagger
+   * /categories:
+   *  get:
+   *   description: Returns all the categories in the database
+   *   tags: [Category]
+   *   responses:
+   *    '200':
+   *     description: A list of categories  in the database
+   *     content:
+   *      application/json:
+   *       schema:
+   *        type: array
+   *        items:
+   *          $ref: '#/components/schemas/Category'
+   */
+
+  router.get('/categories', (req, res) => {
     mysqlConnection.query('SELECT * FROM category', (err, rows, fields) => {
       if (!err) {
         res.json(rows)

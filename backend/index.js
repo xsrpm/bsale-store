@@ -5,8 +5,33 @@ const productRouter = require('./routes/product')
 const categoryRouter = require('./routes/category')
 const mysqlConnection = require('./db-connection.js')
 const sqlInjection = require('sql-injection')
+const path = require('path')
 
 const app = express()
+
+//swagger
+const swaggerUI = require('swagger-ui-express')
+const swaggerJSDoc = require('swagger-jsdoc')
+const swaggerSpec = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'BSale API Test Documentation',
+      version: '1.0.0',
+      description: 'Documentación de la API de Bsale Store',
+      license: {
+        name: 'MIT',
+        url: 'https://choosealicense.com/licenses/mit/'
+      }
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000'
+      }
+    ]
+  },
+  apis: [`${path.join(__dirname, './routes/*.js')}`]
+}
 
 // Settings
 app.set('port', process.env.PORT || 3000)
@@ -15,6 +40,11 @@ app.set('port', process.env.PORT || 3000)
 app.use(cors())
 app.use(express.static('../frontend/'))
 app.use(sqlInjection)
+app.use(
+  '/api-docs',
+  swaggerUI.serve,
+  swaggerUI.setup(swaggerJSDoc(swaggerSpec))
+)
 
 // Routes
 app.use(productRouter(mysqlConnection))

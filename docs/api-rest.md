@@ -26,3 +26,9 @@ backend/
 ├──index.js   archivo principal de la API REST
 └──package.json   archivo de configuración de la API REST
 ```
+
+## Documentación de la API (SWAGGER)
+
+Para ver la documentación de la api, pueden dirigirse a la ruta /api-docs con el proyecto en ejecución
+
+[Ver en la App en producción](https://bsale-store-xsr.herokuapp.com/api-docs)

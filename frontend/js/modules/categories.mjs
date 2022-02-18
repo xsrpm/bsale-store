@@ -22,7 +22,7 @@ function renderCategories(categories, categorySelect) {
  */
 async function fetchCategories() {
   try {
-    const response = await fetch('./category')
+    const response = await fetch('./categories')
     if (!response.ok) {
       if (response.status === 404) {
         throw new Error('No se encontró el recurso solicitado')

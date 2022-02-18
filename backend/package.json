@@ -15,7 +15,9 @@
     "express": "4.17.2",
     "mysql": "2.18.1",
     "yup": "0.32.11",
-    "sql-injection": "0.0.7"
+    "sql-injection": "0.0.7",
+    "swagger-jsdoc": "6.1.0",
+    "swagger-ui-express": "4.3.0"
   },
   "devDependencies": {
     "nodemon": "2.0.15"
