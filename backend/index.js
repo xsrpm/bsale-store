@@ -26,7 +26,7 @@ const swaggerSpec = {
     },
     servers: [
       {
-        url: 'http://localhost:3000'
+        url: `${process.env.BASE_URL}`
       }
     ]
   },
@@ -57,7 +57,7 @@ app.use((error, req, res, next) => {
 
 // Starting the server
 const server = app.listen(app.get('port'), () => {
-  console.log(`Server on port ${app.get('port')}`)
+  console.log(`Server on port ${app.get('port')} 🚀`)
 })
 
 // Closing the server

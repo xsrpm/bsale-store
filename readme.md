@@ -14,6 +14,7 @@ Carrito de compras con Javascript Vanilla en Frontend y backend con Node.js/MySQ
 - DB_USER: Usuario de la base de datos
 - DB_PASS: Contraseña de la base de datos
 - DB_DATABASE: Nombre de la base de datos
+- BASE_URL: URL de la aplicación
 
   Dentro de la carpeta `backend` se ubica un archivo .env.example como ejemplo del archivo .env que puede crearse en dicha carpeta para ejecuciones en entorno de desarrollo
 
