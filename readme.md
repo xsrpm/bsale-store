@@ -56,3 +56,5 @@ MIT
 - https://github.com/angus-c/just#just-debounce-it
 - https://midu.dev/lazy-loading-imagenes-html/
 - https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading
+- https://github.com/mysqljs/mysql#server-disconnects
+- https://github.com/mysqljs/mysql#error-handling

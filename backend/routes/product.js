@@ -2,6 +2,7 @@ const express = require('express')
 const { validate } = require('../helper/validate')
 const { categoryId, search } = require('../validations/product')
 const router = express.Router()
+const openConnection = require('../openConnection')
 
 /**
  * @swagger
@@ -45,10 +46,9 @@ const router = express.Router()
 
 /**
  * Get all products from the database and return them as JSON
- * @param mysqlConnection - The connection to the database.
  * @returns A router object.
  */
-function productsRoutes(mysqlConnection) {
+function productsRoutes() {
   /**
    * @swagger
    * /products:
@@ -67,13 +67,15 @@ function productsRoutes(mysqlConnection) {
    */
 
   router.get('/products', (req, res) => {
-    mysqlConnection.query('SELECT * FROM product', (err, rows, fields) => {
+    const con = openConnection()
+    con.query('SELECT * FROM product', (err, rows, fields) => {
       if (!err) {
         res.json(rows)
       } else {
         console.log(err)
       }
     })
+    con.end()
   })
 
   /**
@@ -107,7 +109,8 @@ function productsRoutes(mysqlConnection) {
     validate(categoryId),
     (req, res) => {
       const { catId } = req.params
-      mysqlConnection.query(
+      const con = openConnection()
+      con.query(
         `SELECT p.id,p.name,p.url_image,p.price,p.discount,c.id AS category_id, c.name AS category_name FROM product p JOIN category c ON p.category=c.id WHERE c.id=${parseInt(
           catId
         )}`,
@@ -119,6 +122,7 @@ function productsRoutes(mysqlConnection) {
           }
         }
       )
+      con.end()
     }
   )
 
@@ -159,14 +163,15 @@ function productsRoutes(mysqlConnection) {
       searchQuery += ` ORDER BY p.price ${orderByPrice}`
     }
     console.log(searchQuery)
-
-    mysqlConnection.query(searchQuery, (err, rows, fields) => {
+    const con = openConnection()
+    con.query(searchQuery, (err, rows, fields) => {
       if (!err) {
         res.json(rows)
       } else {
         console.log(err)
       }
     })
+    con.end()
   })
 
   return router

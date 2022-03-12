@@ -1,13 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const openConnection = require('../openConnection')
 
 /**
  * This function returns a router object that has a route that returns all the categories in the
  * database
- * @param mysqlConnection - The connection to the MySQL database.
  * @returns A router object.
  */
-function categoryRoutes(mysqlConnection) {
+function categoryRoutes() {
   /**
    * @swagger
    * components:
@@ -46,13 +46,15 @@ function categoryRoutes(mysqlConnection) {
    */
 
   router.get('/categories', (req, res) => {
-    mysqlConnection.query('SELECT * FROM category', (err, rows, fields) => {
+    const con = openConnection()
+    con.query('SELECT * FROM category', (err, rows, fields) => {
       if (!err) {
         res.json(rows)
       } else {
         console.log(err)
       }
     })
+    con.end()
   })
   return router
 }
