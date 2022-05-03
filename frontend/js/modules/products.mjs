@@ -1,4 +1,4 @@
-import { ErrorFetch } from '../entities/errorFetch.js'
+import { ErrorFetch } from '../utils/errorFetch.js'
 
 class ProductsResponse {
   /**

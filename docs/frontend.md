@@ -2,7 +2,7 @@
 
 ## Tecnologías requeridas
 
-- HTML -
+- HTML
 - CSS
 - JAVASCRIPT
 - Start Bootstrap - Shop Homepage v5.0.4 (template de Bootstrap para una tienda online). Incluye los estilos de Bootstrap v5.1.3 además de modificaciones. https://startbootstrap.com/template/shop-homepage. Incluido en los archivos del proyecto.
@@ -16,7 +16,7 @@ frontend/
 ├──css/
 │   └──styles.css   Estilos del proyecto que incluyen el template
 ├──js/
-│   ├──entities/    Clases de javascript para el paso de datos
+│   ├──schemas/    Clases de javascript para el paso de datos
 │   ├──modules/    Funciones de javascript que encapsulan operaciones del frontend
 │   └──scripts.js    Archivo principal de javascript
 └──index.html

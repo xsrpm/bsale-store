@@ -1,4 +1,4 @@
-import { Category } from '../entities/category.js'
+import { Category } from '../schemas/category.js'
 
 /**
  * Create an HTML element for each category and append it to the category select element
